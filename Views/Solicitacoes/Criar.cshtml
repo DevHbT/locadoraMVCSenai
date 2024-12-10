@@ -1,41 +1,61 @@
-﻿
+﻿@using locadoraMVCSenai.Models
+@model SolicitacaoViewModel
+
 @{
     ViewData["Title"] = "Solicitar Veículo";
+    
+    DateTime dataInicio = Model.Solicitacao.DataInicio;
+    DateTime dataFim = Model.Solicitacao.DataFim;
+    decimal totalDias = 0;
+    decimal valorTotal = 0;
+    
+        totalDias = (decimal)(dataFim - dataInicio).TotalDays;
 }
 
 <div class="container my-5">
-    <h2 class="text-center">Solicitar Veículo</h2>
-    <p><strong>Veículo:</strong> veiculo</p>
-    <p><strong>Preço por Dia:</strong> R$ valor</p>
-
-    <form method="post">
-        <input type="hidden" name="VeiculoId"/>
-
+    <p>@totalDias;</p>
+    <form asp-controller="Solicitacoes" asp-action="Criar" method="post">
+        <input type="hidden" name="VeiculoId" value="@Model.Veiculo.Id" />
+        <h2 class="text-center">Solicitar Veículo</h2>
+        <p><strong>Veículo:</strong> @Model.Veiculo.Modelo</p>
+        <p><strong>Preço por Dia:</strong> R$@Model.Veiculo.PrecoPorDia.ToString("F2")</p>
+        <div class="text-center">
+            <img src="@Model.Veiculo.FotoUrl" alt="" class="w-50 rounded">
+        </div>
         <div class="mb-3">
             <label for="DataInicio" class="form-label">Data de Início</label>
-            <input type="date" class="form-control" id="DataInicio" name="DataInicio" required />
-        </div>
-
-        <div class="mb-3">
+            <input type="date" class="form-control" asp-for="Solicitacao.DataInicio" id="DataInicio" required />
             <label for="DataTermino" class="form-label">Data de Término</label>
-            <input type="date" class="form-control" id="DataTermino" name="DataTermino" required />
+            <input type="date" class="form-control" asp-for="Solicitacao.DataFim" id="DataTermino" required />
         </div>
 
         <div class="mb-3">
             <label for="NomeUsuario" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="NomeUsuario" name="NomeUsuario" required />
+            <input type="text" asp-for="Solicitacao.Nome" class="form-control" id="NomeUsuario" required />
         </div>
 
         <div class="mb-3">
             <label for="EmailUsuario" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="EmailUsuario" name="EmailUsuario" required />
+            <input type="email" asp-for="Solicitacao.Email" class="form-control" id="EmailUsuario" required />
         </div>
 
         <div class="mb-3">
             <label for="TelefoneUsuario" class="form-label">Telefone</label>
-            <input type="tel" class="form-control" id="TelefoneUsuario" name="TelefoneUsuario" required />
+            <input type="tel" asp-for="Solicitacao.Telefone" class="form-control" id="TelefoneUsuario" required />
+        </div>
+
+        <!-- Exibir a diferença de dias calculada -->
+        <div class="mb-3">
+            <label for="TotalDias" class="form-label">Total de Dias</label>
+            <input type="text" class="form-control" id="TotalDias"  readonly />
+        </div>
+
+        <div class="mb-3">
+            <label for="ValorTotal" class="form-label">Valor Total</label>
+            <input type="text" class="form-control" id="ValorTotal" readonly />
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
+        <a type="button" class="btn btn-secondary" asp-controller="Veiculos" asp-action="Index">Voltar</a>
     </form>
 </div>

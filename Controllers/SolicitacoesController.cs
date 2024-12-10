@@ -3,22 +3,54 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using locadoraMVCSenai.Models;
+using locadoraMVCSenai.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using VeiculosMVC.Data;
+using VeiculosMVC.Models;
+using VeiculosMVC.Repository;
 
 namespace VeiculosMVC.Controllers
 {
     public class SolicitacoesController : Controller
     {
-        private readonly ILogger<SolicitacoesController> _logger;
+        private readonly IVeiculosRepository _veiculosRepository;
 
-        public SolicitacoesController(ILogger<SolicitacoesController> logger)
+        private readonly LocadoraContext _locadoraContext;
+
+        private readonly ISolicitacoesRepository _solicitacoesRepository;
+
+        public SolicitacoesController(IVeiculosRepository veiculosRepository, ISolicitacoesRepository solicitacaoRepository)
         {
-            _logger = logger;
+            _solicitacoesRepository = solicitacaoRepository;
+            _veiculosRepository = veiculosRepository;
         }
 
-        public IActionResult Criar()
+        public IActionResult Index(){
+            return View();
+        }
+
+        public IActionResult Criar(int id)
         {
+            var veiculos = _veiculosRepository.ListarId(id);
+            var solicitacao = new SolicitacaoModel();
+            
+            var ViewModel = new SolicitacaoViewModel{
+                Veiculo = veiculos,
+                Solicitacao = solicitacao
+            };
+
+            return View(ViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Criar(SolicitacaoModel solicitacao)
+        {
+            if(ModelState.IsValid){
+                _solicitacoesRepository.Adicionar(solicitacao);
+                return RedirectToAction("Index");
+            }
             return View();
         }
 

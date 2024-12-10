@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VeiculosMVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d2a7bdeca4e37c7ed5e544094c5fd5d10162e824")]
 [assembly: System.Reflection.AssemblyProductAttribute("VeiculosMVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VeiculosMVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

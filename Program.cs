@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using VeiculosMVC.Data;
 using VeiculosMVC.Repository;
 using Microsoft.Extensions.DependencyInjection;
+using locadoraMVCSenai.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultDataBase");
 builder.Services.AddDbContext<LocadoraContext>(opt => opt.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
 builder.Services.AddScoped<IVeiculosRepository, VeiculosRepository>();
+builder.Services.AddScoped<ISolicitacoesRepository, SolicitacaoRepository>();
 
 var app = builder.Build();
 

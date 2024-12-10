@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VeiculosMVC.Data;
 
@@ -11,9 +12,11 @@ using VeiculosMVC.Data;
 namespace VeiculosMVC.Migrations
 {
     [DbContext(typeof(LocadoraContext))]
-    partial class LocadoraContextModelSnapshot : ModelSnapshot
+    [Migration("20241210134928_Refatoracao")]
+    partial class Refatoracao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

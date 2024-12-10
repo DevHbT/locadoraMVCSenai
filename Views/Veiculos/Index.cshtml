@@ -5,7 +5,7 @@
 
 <div class="container my-5">
     <h2 class="text-center">Lista de Veículos Disponíveis</h2>
-    <a type="button" class="btn btn-primary" asp-controller="Veiculos" asp-action="Criar">+Adicionar veículo</a>
+    <a role="button" class="btn btn-primary" asp-controller="Veiculos" asp-action="Criar">+Adicionar veículo</a>
     <br/>
 
     @if(TempData["MensagemSucesso"] != null)
@@ -38,7 +38,7 @@
                         <p class="card-text"><strong>Preço por dia:</strong> R$@veiculo.PrecoPorDia.ToString("F2")</p>
                     </div>
                     <div class="card-footer text-center">
-                        <a  class="btn btn-success">Reservar</a>
+                        <a  class="btn btn-success" asp-route-id="@veiculo.Id" asp-controller="Solicitacoes" asp-action="Criar">Reservar</a>
                         <a role="button" class="btn btn-primary" asp-controller="Veiculos" asp-action="Editar" asp-route-id="@veiculo.Id">Editar</a>
                         <a role="button" class="btn btn-danger" asp-route-id="@veiculo.Id" asp-controller="Veiculos" asp-action="VerificarDeletar">Excluir</a>
                     </div>
