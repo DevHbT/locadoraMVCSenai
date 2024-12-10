@@ -1,0 +1,40 @@
+﻿@model VeiculoModel
+
+@{
+    ViewData["Title"] = "Editar Veículo";
+}
+
+<form asp-controller="Veiculos" asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id">
+<div class="container my-5">
+    <h2 class="text-center">Editar Veiculo</h2>
+
+    <div class="mb-3">
+    <label for="Modelo" class="form-label">Modelo</label>
+    <input type="text" asp-for="Modelo" class="form-control" id="Modelo" placeholder="Digite o Modelo do carro">
+    @Html.ValidationMessageFor(x => x.Modelo)
+    </div>
+
+    <div class="mb-3">
+    <label for="Marca" class="form-label">Marca</label>
+    <input type="text" asp-for="Marca" class="form-control" id="Marca" placeholder="Digite a Marca do carro">
+    @Html.ValidationMessageFor(x => x.Marca)
+    </div>
+
+    <div class="mb-3">
+    <label for="Preco" class="form-label">Preço por dia</label>
+    <input type="number" asp-for=PrecoPorDia class="form-control" id="Preco" placeholder="Digite o Preço do carro">
+    @Html.ValidationMessageFor(x => x.PrecoPorDia)
+    </div>
+
+    <div class="mb-3">
+    <label for="url" class="form-label">URL Foto</label>
+    <input type="url" asp-for=FotoUrl class="form-control" id="url" placeholder="Digite a url da Foto do carro">
+    @Html.ValidationMessageFor(x => x.FotoUrl)
+    </div>
+    
+    <button type="submit" class="btn btn-success">Confirmar</button>
+    <a type="button" class="btn btn-secondary" asp-controller="Veiculos" asp-action="Index">Voltar</a>
+    
+</div>
+</form>

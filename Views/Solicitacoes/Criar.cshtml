@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Solicitar Veículo";
+}
+
+<div class="container my-5">
+    <h2 class="text-center">Solicitar Veículo</h2>
+    <p><strong>Veículo:</strong> veiculo</p>
+    <p><strong>Preço por Dia:</strong> R$ valor</p>
+
+    <form method="post">
+        <input type="hidden" name="VeiculoId"/>
+
+        <div class="mb-3">
+            <label for="DataInicio" class="form-label">Data de Início</label>
+            <input type="date" class="form-control" id="DataInicio" name="DataInicio" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="DataTermino" class="form-label">Data de Término</label>
+            <input type="date" class="form-control" id="DataTermino" name="DataTermino" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="NomeUsuario" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="NomeUsuario" name="NomeUsuario" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="EmailUsuario" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="EmailUsuario" name="EmailUsuario" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="TelefoneUsuario" class="form-label">Telefone</label>
+            <input type="tel" class="form-control" id="TelefoneUsuario" name="TelefoneUsuario" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
+    </form>
+</div>

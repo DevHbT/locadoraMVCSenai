@@ -1,0 +1,34 @@
+﻿@model VeiculoModel
+
+@{
+    ViewData["Title"] = "Lista de Veículos";
+}
+
+<form asp-controller="Veiculos" asp-action="Criar" method="post">
+<div class="container my-5">
+    <h2 class="text-center">Cadastrar Veiculo</h2>
+
+    <div class="mb-3">
+    <label for="Modelo" class="form-label">Modelo</label>
+    <input type="text" asp-for="Modelo" class="form-control" id="Modelo" placeholder="Digite o Modelo do carro">
+    </div>
+
+    <div class="mb-3">
+    <label for="Marca" class="form-label">Marca</label>
+    <input type="text" asp-for="Marca" class="form-control" id="Marca" placeholder="Digite a Marca do carro">
+    </div>
+
+    <div class="mb-3">
+    <label for="Preco" class="form-label">Preço por dia</label>
+    <input type="number" asp-for=PrecoPorDia class="form-control" id="Preco" placeholder="Digite o Preço do carro">
+    </div>
+
+    <div class="mb-3">
+    <label for="url" class="form-label">URL Foto</label>
+    <input type="url" asp-for=FotoUrl class="form-control" id="url" placeholder="Digite a url da Foto do carro">
+    </div>
+    
+    <button type="submit" class="btn btn-success">Confirmar</button>
+    <a type="button" class="btn btn-secondary" asp-controller="Veiculos" asp-action="Index">Voltar</a>
+</div>
+</form>

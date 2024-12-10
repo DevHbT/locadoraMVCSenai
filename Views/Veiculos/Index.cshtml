@@ -1,0 +1,51 @@
+﻿@model List<VeiculoModel>
+@{
+    ViewData["Title"] = "Lista de Veículos";
+}
+
+<div class="container my-5">
+    <h2 class="text-center">Lista de Veículos Disponíveis</h2>
+    <a type="button" class="btn btn-primary" asp-controller="Veiculos" asp-action="Criar">+Adicionar veículo</a>
+    <br/>
+
+    @if(TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <!-- Lista de Veículos -->
+    <div class="row">
+        @if(Model != null && Model.Any()){
+        @foreach(var veiculo in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="@veiculo.FotoUrl" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">@veiculo.Modelo</h5>
+                        <p class="card-text"><strong>Marca:</strong> @veiculo.Marca</p>
+                        <p class="card-text"><strong>Preço por dia:</strong> R$@veiculo.PrecoPorDia.ToString("F2")</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a  class="btn btn-success">Reservar</a>
+                        <a role="button" class="btn btn-primary" asp-controller="Veiculos" asp-action="Editar" asp-route-id="@veiculo.Id">Editar</a>
+                        <a role="button" class="btn btn-danger" asp-route-id="@veiculo.Id" asp-controller="Veiculos" asp-action="VerificarDeletar">Excluir</a>
+                    </div>
+                </div>
+            </div>
+        }
+        }
+    </div>
+</div>
+
